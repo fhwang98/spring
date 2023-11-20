@@ -1,0 +1,87 @@
+
+Servlet/JSP	: 초반(쉬움) > 후반(어려움) >         > 5일 업무
+Spring		: 초반(어려움) > 후반(쉬움) > 프레임워크 > 2일 업무
+
+Spring Framework
+- https://spring.io
+- Spring 1.0 ~ 6.0
+- Spring 3.XX ~ 5.XX > 수업 Spring 5.XX
+- 자바 플랫폼을 위한 오픈 소스 애플리케이션 프레임워크이다.
+- 콘솔 or 응용 or 웹 응용
+- 현업 > 웹 응용 제작
+- Servlet/JSP > 버전 업
+- 전자 정부 표준 프레임워크로 채택
+
+스프링 코어 + 추가 프로젝트 = 스프링
+- Spring
+- Spring MVC
+- Spring AOP
+- Spring DATA
+- Spring Security
+- Spring Boot
+
+
+스프링 프로젝트 구성 요소(주요 기술)
+1. POJO 기반, Plain Old Java Object. Java로 생성하는 순수한 객체를 뜻한다.
+2. 의존성 주입 지원(DI)
+3. 관점 지향 프로그래밍 지원(AOP)
+4. Spring MVC > 스프링 웹 사이트
+5. 레이아웃 지원 > Tiles
+6. 데이터베이스 연동 지원
+	- JDBC
+	- Spring JDBC > 낮음 > 수업(x)
+	- ORM(JPA) > 해외(70%) > 수업(o)
+	- MyBatis > 국내(70%) > 수업(o)
+
+
+Maven (메이븐)
+	- 빌드 도구, 라이브러리 관리 도구 등..
+	- 프로젝트 생성 or 유지 관리 or 배포를 도와주는 프로그램 > 집사
+	- 수업 > 라이브러리 관리용(jar) > jar 다운로드 + 참조 + 관리
+	- pom.xml
+	
+- pom.xml
+<dependency>
+- 필요한 jar 파일 기술
+
+lombok.jar
+1. Buid Path > lib 참조
+2. WEB-INF > lib 폴더 복사
+3. Maven > dependancy 추가
+
+- https://mvnrepository.com/	
+	
+	
+	
+스프링 버전 설정 + JDK 버전 설정
+- Spring MVC Project
+	- 스프링 3.XX
+	- JDK 1.6
+	pom.xml에서 매번 설정해줘야됨
+
+
+DI, AOP > 스프링 기술(X) / 면접 (***********)
+Spring DI
+- 디자인 패턴
+- Dependency Injection > DI
+- 의존(성) 주입
+- 스프링 내에서 중요한 개념 > 스프링 내의 모든 객체 관리에 사용
+- 프로그래밍에서 구성 요소 간의 의존 관계가 소스 내부가 아닌 외부 환경에서 정의되게 하는 디자인 패턴
+
+"의존 관계"?
+- src/main/java > "com.test.spring.di01" 패키지 생성
+					> "Main.java"
+					> "Hong.java"	: 기존 방식
+					> "Pen.java"
+					
+					> "Lee.java"	: DI 방식
+					> "Brush.java"
+
+- src/main/java > "com.test.spring.di02" 패키지 생성
+					> "di02.xml"
+					- https://docs.spring.io/spring-framework/docs/
+					- https://docs.spring.io/spring-framework/docs/5.0.7.RELEASE/spring-framework-reference/core.html#spring-core
+
+
+
+Spring AOP
