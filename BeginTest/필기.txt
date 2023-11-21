@@ -84,4 +84,74 @@ Spring DI
 
 
 
-Spring AOP
+
+
+Spring AOP, Aspect Oriented Programming
+- 관점 지향 프로그래밍
+- 관점(=관심사) > 업무 구현 시 주업무가 아닌 나머지 보조 업무
+- 주업무 vs 보조업무
+
+[게시판 글쓰기]
+1. 기존 방식
+	-add.do
+		a. 글쓰기 > 주업무
+		b. 권한체크 > 보조업무
+	- 주업무와 보조업무를 같은 곳에서 구현(한 파일에서 구현)
+	- 단점 > 코드 관리 불편(어디서부터 어디까지가 주업무이고 보조업무인지?)
+2. AOP 방식
+	- add.do
+	- 주업무와 보조업무를 분리시켜서 따로 구현(물리적으로 분리)
+	- 스프링을 통해서 주업무와 보조업무를 다시 결합 후 동작
+
+
+Spring AOP 용어
+1. Core Concern
+	- 비즈니스 코드, 주업무
+
+2. Cross-cutting Concern
+	- 보조업무
+	
+3. Target
+	- 비즈니스 업무를 소유한 객체
+	
+4. Proxy
+	- Target을 감싸는 대리 객체
+	
+5.JoinPoint
+	- Target이 가진 주업무(메서드)
+	
+6.Pointcut
+	- 보조업무와 특정 Joinpoint를 연결하는 작업
+	
+7.Aspect
+	- 보조업무를 구현하는 객체
+	
+8.Advice
+	- 주업무가 시행되는 어느 시점에 보조업무를 실행할지?
+	a. Before Advice ***
+	b. After Advice ***
+	c. Around Advice
+	e. After-returning Advice
+	f. After-throwing Advice
+
+
+Spring AOP 구현
+- "com.test.spring.aop1" 패키지
+		> "Main.java"			//메인
+		
+		> "Memo.java" (I)		// 메인 업무 객체(인터페이스)
+		> "MemoImpl.java" (C)	// 메인 업무 객체(클래스)
+		
+		> "Logger.java" (C)		// 보조 업무 객체(클래스)
+		
+		> "Memo.xml" (C)		// 스프링 설정 파일
+
+
+
+XML > Namespace(태그 집합)
+
+
+
+
+
+

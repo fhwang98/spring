@@ -1,0 +1,28 @@
+Spring MVC Project
+- 스프링 기반 MVC 웹 프로젝트 구현
+
+패키지
+- "com.test.spring.controller"
+
+Servlet/JSP
+- 웹 요청 처리 + 통제 > Controller 역할
+
+스프링 MVC
+- Controller
+- "com.test.spring.controller" > "Ex01Controller.java"
+- views > "ex01.jsp"
+
+
+
+DispatcherServlet > "Front-Controller"
+- 면접 대비
+
+
+- com.test.spring.controller > "Ex02Controller.java"
+- "com.test.spring.persistence" > "SpringDAO.java" (I)
+-								> "SpringDAOImpl.java" (C)
+- views > "ex02.jsp"
+
+
+
+
