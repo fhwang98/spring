@@ -124,6 +124,22 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		
+		<!-- AOP -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		
+		
 		    
 	</dependencies>
     <build>

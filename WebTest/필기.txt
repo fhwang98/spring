@@ -25,4 +25,55 @@ DispatcherServlet > "Front-Controller"
 
 
 
+--------------------------------------------------------
+
+
+
+
+
+- com.test.spring.controller > "Ex03Controller.java"
+- views > "ex03.jsp"
+
+
+
+- com.test.spring.controller > "Ex04Controller.java"
+- views > "ex04.jsp"
+-		> "ex04_1.jsp"
+
+
+
+- com.test.spring.controller > "BoardController.java"
+- views > "list.jsp"
+		> "add.jsp"
+		> "addok.jsp"
+		> "view.jsp"
+
+
+********* 데이터 전송 > 데이터 수신
+					req.getParameter("");
+- com.test.spring.controller > "Ex05Controller.java"
+- views > "ex05.jsp"
+-		> "ex05ok.jsp"
+
+- "com.test.spring.domain" > "SpringDTO.java"
+
+
+요청 메소드 반환값
+- com.test.spring.controller > "Ex06Controller.java"
+- views > "ex06.jsp"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
