@@ -1,0 +1,146 @@
+
+
+MyBatis(iBatis) (스프링과는 별개의 기술)
+- 영속성 계층(= 데이터베이스 조작 계층)
+- JDBC 역할
+- 응용 프로그램 <-> JDBC <-> 데이터 베이스
+- 응용 프로그램 <-> MyBatis <-> 데이터 베이스
+
+Spring MyBatis
+- 스프링 프로젝트 중 하나
+1. XML Mapper를 사용하는 방식
+2. Interface Mapper를 사용하는 방식
+
+프로젝트 세팅
+1. pom.xml
+	- JDK 11
+	- Spring 5.0.7
+
+2. pom.xml
+	- MyBatis > 의존성 추가
+	- ojdbc.jar > 메이븐 제공x > lib에 복사
+
+
+
+MyBatis > JDBC 연결 테스트
+- 업무 구현(x)
+- 테스트(o)
+- src/text/main > "com.test.mybatis.persistence" > "JDBCTest.java"
+
+- Log4j > 로그 남기는 기술
+
+
+Connection 객체 생성
+- DBUtil.open() > DB 연결 > Connection 객체 생성 * 반복
+- 모두 DB 연결 > 관리되지 않는 Connection 객체 > 메모리 차지, 성능 저하
+- 사용 완료된 Connection > close() > 번거로움;;
+
+Connection Pool, 커넥션 풀
+- Commons DBCP
+- Tomcat DBCP
+- HikariCP > 스프링 부트 2.0부터 기본으로 사용
+
+Commons DBCP
+- pom.xml > commons-dbcp 의존성 추가
+- WEB-INF > spring > root-context.xml > 설정 추가
+- com.test.mybatis.persistence > "DBCPTest.java"
+
+
+HikaryCP
+- pom.xml > 의존성 추가
+- root-context.xml > 설정 추가
+
+MyBatis
+- pom.xml > 의존성 추가 (4개)
+- root-context.xml > 설정 추가
+- com.test.mybatis.persistence > "MapperTest.java"
+
+
+1. pom.xml > MyBatis 의존성 (4개)
+2. 		   > Connection pool (HikariCP)
+3. root-context.xml > HikariCP
+4. 					> MyBatis
+5. mapper > .xml file
+
+
+
+SQL 실행
+- "com.test.mybatis.controller" > "MyBatisController.java"
+
+- "com.test.mybatis.persistence" > "MyBatisDAO.java" (I)
+-								 > "MyBatisDAOImpl.java" (C)
+
+- "com.test.mybatis.domain" > "MyBatisDTO.java"
+
+- src/main/resources > mapper > "mybatis.xml"
+
+- views > "list.jsp"
+		> "add,jsp"
+		> "addok.jsp"
+
+- MyBatisTest > "script.sql"
+
+
+
+
+@Controller : @Component 포함
+			  @Component > bean 태그
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

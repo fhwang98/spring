@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="파일명" -->
+<mapper namespace="test">
+
+	<!--
+		JDBC > SQL을 Java 파일에서 문자열로 관리 > "SELECT .... "
+		MyBatis > SQL을 XML 파일에서 관리
+	-->
+	<!--
+		<select id=""></select>
+		<insert id=""></insert>
+		<update id=""></update>
+		<delete id=""></delete>
+	-->
+	
+	<select id="time" resultType="String">
+		SELECT sysdate FROM dual
+	</select>
+	
+</mapper>
