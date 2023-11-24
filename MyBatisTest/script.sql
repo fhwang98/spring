@@ -10,7 +10,7 @@ CREATE TABLE tblMyBatis (
 
 CREATE SEQUENCE seqMyBatis;
 
-SELECT * FROM tblMyBatis;
+SELECT * FROM tblMyBatis ORDER BY seq DESC;
 
 INSERT INTO tblMyBatis (seq, name, age, address, gender)
 	VALUES (seqMyBatis.nextVal, '홍길동', 20, '서울시 강남구 역삼동', 'm');

@@ -11,6 +11,7 @@ Servlet/JSP
 - Controller
 - "com.test.spring.controller" > "Ex01Controller.java"
 - views > "ex01.jsp"
+- servelt-context.xml > bean 등록
 
 
 
@@ -22,6 +23,7 @@ DispatcherServlet > "Front-Controller"
 - "com.test.spring.persistence" > "SpringDAO.java" (I)
 -								> "SpringDAOImpl.java" (C)
 - views > "ex02.jsp"
+- servelt-context.xml > bean 등록, 의존 주입
 
 
 

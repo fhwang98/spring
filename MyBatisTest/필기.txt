@@ -18,7 +18,7 @@ Spring MyBatis
 
 2. pom.xml
 	- MyBatis > 의존성 추가
-	- ojdbc.jar > 메이븐 제공x > lib에 복사
+	- ojdbc.jar > 메이븐 제공x > lib에 복사 / BuildPath
 
 
 

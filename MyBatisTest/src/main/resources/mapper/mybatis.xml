@@ -4,9 +4,132 @@
 
 <mapper namespace="mybatis">
 
+	<!-- 쿼리를 호출하는 메소드의 이름을 id로 주는게 알아보기 좋음 -->
 	<insert id="add" parameterType="com.test.domain.MyBatisDTO">
 		INSERT INTO tblMyBatis (seq, name, age, address, gender)
 			VALUES (seqMyBatis.nextVal, #{name}, #{age}, #{address}, #{gender})
 	</insert>
+
+	
+	<update id="m1">
+		UPDATE tblMyBatis SET age = age + 1
+	</update>
+
+	
+	<delete id="m2" parameterType="java.lang.String"><!-- java.lang. 패키지 > 가장 기본 패키지, 유일하게 명시안해도됨 -->
+		DELETE FROM tblMyBatis WHERE seq = #{seq}<!-- 데이터 바인딩 시 > 넘어온 데이터가 하나일 때는 아무 이름이나 ㄱㅊ.. but 관습적으로 이름 일치시킴 -->
+	</delete>
+
+	
+	<insert id="m3" parameterType="com.test.domain.MyBatisDTO">
+		INSERT INTO tblMyBatis (seq, name, age, address, gender)
+			VALUES (seqMyBatis.nextVal, #{name}, #{age}, #{address}, #{gender})
+	</insert>
+
+	
+	<update id="m4" parameterType="java.util.HashMap">
+		UPDATE tblMyBatis SET address = #{address} WHERE seq = #{seq}
+	</update>
+
+	
+	<!-- template.selectOne() -->
+	<select id="m5" resultType="Integer">
+		SELECT count(*) FROM tblMyBatis
+	</select>
+
+	
+	<select id="m6" parameterType="String" resultType="com.test.domain.MyBatisDTO">
+		SELECT * FROM tblMyBatis WHERE seq = #{seq}
+	</select>
+
+	
+	<!-- SELECT 반환값 N행 = resultType > 1 행의 자료형만 기재(*****) -->
+	<!-- template.selectList() -->
+	<select id="m7" resultType="String"> <!-- 행 하나의 자료형만 기재 > selectList() > 배열로 만들어줌 -->
+		SELECT name FROM tblMyBatis
+	</select>
+
+	
+	<select id="m8" resultType="com.test.domain.MyBatisDTO">
+		SELECT * FROM tblMyBatis ORDER BY seq DESC
+	</select>
+
+	
+	<!--
+		#{table} ? 
+		ORA-00903: invalid table name
+		SELECT count(*) FROM 'tblmybatis' 
+		
+		#{key} > 데이터 바인딩(자료형에 따라 표기가 달라짐)
+		${key} > 식별자 바인딩(테이블명, 컬럼명 등..)
+	-->
+	<select id="m9" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM ${table}
+	</select>
+
+
+	<!-- CDATA : parsing 안함 <- 반대 -> PCDATA -->
+	<select id="m10" resultType="Integer">
+		SELECT count(*) FROM tblMyBatis
+		<![CDATA[
+		WHERE age <= 25
+		]]>
+	</select>
+
+
+	<select id="m11" parameterType="String" resultType="com.test.domain.MyBatisDTO">
+		SELECT * FROM tblMyBatis
+			WHERE address LIKE '%' || #{word} || '%'
+	</select>
+	
+	<select id="m12" parameterType="String" resultType="String">
+	
+		<!-- <if test="type == 1">
+			SELECT first_name FROM employees
+		</if>
+		<if test="type == 2">
+			SELECT last_name FROM employees
+		</if> -->
+		
+		SELECT
+			<if test="type==1">first_name</if>
+			<if test="type==2">last_name</if>
+		FROM employees
+		
+	</select>
+
+	
+	<!--
+		1. 이름 : m13.do?column=name&word=홍길동
+		2. 주소 : m13.do?column=address&word=역삼
+		3. 나이 : m13.do?column=age&word=25
+	-->
+	<select id="m13" parameterType="map" resultType="com.test.domain.MyBatisDTO">
+	
+		SELECT * FROM tblMyBatis
+		
+		<!-- <if test="column == 'name'">
+		WHERE name = #{word}
+		</if>
+		<if test="column == 'address'">
+		WHERE address = '%' || #{word} || '%'
+		</if>
+		<if test="column == 'age'">
+		<![CDATA[WHERE age <= #{word}]]>
+		</if> -->
+		
+		<choose>
+				<when test="column == 'name'">
+					where name = #{word}
+				</when>
+				<when test="column == 'address'">
+					where address like '%' || #{word} || '%'
+				</when>
+				<otherwise>
+					<![CDATA[ where age <= #{word} ]]>
+				</otherwise>
+			</choose>	
+			
+	</select>
 
 </mapper>
