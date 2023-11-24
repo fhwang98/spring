@@ -1,0 +1,15 @@
+코드조각 관리 게시판
+- Spring MVC + Spring MyBatis
+
+- Code > "script.sql"
+
+- "com.test.controller" "CodeController.java"
+- "com.test.persistence" > "CodeDAO.java" (I)
+						 > "CodeDAOImpl.java" (C)
+- "com.test.domain" > "CodeDTO.java"
+
+- views > "list.jsp"
+		> "view.jsp"
+		> "add.jsp"
+
+- src/main/resources > "mapper" > "code.xml"
