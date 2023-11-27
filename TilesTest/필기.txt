@@ -1,0 +1,62 @@
+이전
+- 레이아웃 > <%@ include file="재사용할 조각 페이지 %> 
+
+Tiles
+- 레이아웃 프레임워크
+- 페이지 레이아웃 구성하고 + 관리하는 기술
+
+
+NonTiles / Tiles
+
+
+NonTiles 프로젝트
+구현 기능
+- 메인(index.do)
+
+- 회원
+	- 회원정보(member/info.do)
+	- 활동내역(member/history.do)
+	- 즐겨찾기(member/favorite.do)
+
+- 관리자
+	- 로그(admin/log.do)
+	- 환경설정(admin/setting.do)
+
+- "com.test.coltroller" > "MainController.java"
+						> "MemberController.java"
+						> "AdminController.java"
+
+- views > "index.jsp"
+- views > "member" > "info.jsp"
+				   > "history.jsp"
+				   > "favorite.jsp"
+		> "admin"  > "log.jsp"
+				   > "setting.jsp"
+		>   "inc"  > "main_menu.jsp"
+				   > "member_menu.jsp"
+				   > "admin_menu.jsp"
+				   > "asset.jsp"
+
+
+
+
+
+Tiles 프로젝트
+1. Java + String > 버전 변경
+
+2. pom.xml
+	- 4개 의존성 추가
+	
+3. servlet-context.xml > ViewResolver
+
+4. "com.test.controller" ? "TestController.java"
+	views > "test.jsp"
+
+5. 파일 복사
+	- Controller 복사
+	- inc 폴더 복사
+	- views 폴더 복사
+
+
+test.do 호출 > Controller 응답 > Tiles ViewResolver > 반환값과 이름이 같은 jsp파일 대신 definition 탐색 > 찾은 definition > jsp(레이아웃 페이지) 호출 
+
