@@ -1,0 +1,20 @@
+
+설정
+- pom.xml > Java, Spring version, AOP 의존성 2개 추가
+- web.xml > filter
+- servlet-context.xml > namespace > aop 체크 > <aop:aspectj-autoproxy /> 태그 1개 추가
+
+- "com.test.controller" > "AOPController.java"
+- "com.test.persistence" > "AOPDAO.java" (I)
+						 > "AOPDAOImpl.java" (C)
+- view > "list.jsp"
+	   > "add.jsp"
+	   > "view.jsp"
+
+- "com.test.aspect" > "Log.java"
+
+
+
+AOP 활용
+- 글쓰기. 수정하기, 삭제하기 > 권한 체크
+- 방문기록 등..
