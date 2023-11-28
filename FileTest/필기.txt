@@ -1,0 +1,23 @@
+1. Java + Spring 버전 변경
+
+2. 설정
+	- pom.xml > commons io
+	- web.xml
+	- servlet-context.xml
+	
+3. 파일
+- "com.test.file.controller" > "FileController.java"
+- views > "add.jsp"
+		> "addok.jsp"
+- webapp > resources > "files" > 실제 저장할 폴더
+
+4. 추가(다중 파일 업로드)
+
+- FileTest > script.sql
+- "com.test.file.model" > "FileDAO" (I)
+						> "FileDAOImpl.java" (C)
+						> "PlaceDTO.java"
+						> "PicDTO.java"
+- views > "multi" > "list.jsp"
+				  > "add.jsp"
+				  > "view.jsp"
