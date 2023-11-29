@@ -1,0 +1,103 @@
+REST API, RESTful API
+
+REST, Representation State Transfer
+- 웹상의 자원(문서, 이미지, 영상 등..)을 자원명으로 표시해서 상태를 주고 받는 규칙
+- HTTP URI를 통해서 자원을 명시하고, HTTP Method를 통해서 자원에 대한 CRUD 처리하는 방식
+
+URI(URL) 표기 방식
+ 
+1. 이전 방식
+	- 목록보기 GET		http://localhost/board/list.do
+	- 추가하기 POST	http://localhost/board/add.do
+	- 수정하기 POST	http://localhost/board/edit.do
+	- 삭제하기 POST	http://localhost/board/del.do
+
+2. REST 방식
+	- 목록보기 GET		http://localhost/board
+	- 추가하기 POST	http://localhost/board
+	- 수정하기 PUT		http://localhost/board/1
+	- 삭제하기 DELETE	http://localhost/board/1
+
+	- 회원목록보기 GET http://localhost/member	
+
+REST API 설계 규칙
+1. URI에 자원을 표시한다. > 마지막 단어가 자원명이 된다.
+
+2. URI에 동사를 표시하지 않는다.
+
+3. HTTP Method를 사용해서 행동을 표현한다. (2번 대신)
+	a. GET:		자원 요청
+	b. POST:	자원 전달 + 서버측 생성
+	c. PUT:		자원 전달 + 수정(기존 삭제 > 새로 생성) > 전체 수정(모든 컬럼 수정시 사용)
+	d. PATCH:	자원 전달 + 수정(일부 수정)
+	d. DELETE:	자원 삭제
+
+4. URI + HTTP Method = REST API
+
+5. 구분자는 '/'를 사용한다.
+
+6. URI의 마지막은 '/'를 적지 않는다.
+
+7. URI에는 '-' 사용이 가능하다.(가끔)
+
+8. URI에는 '_' 사용하지 않는다.(가독성)
+
+9. URI는 소문자로만 작성한다.
+
+10. 확장자를 작성하지 않는다. > URI가 자원명으로 끝나기 때문에
+
+
+
+주제 > Address REST API Server 구축
+
+프로젝트 설정
+1. pom.xml
+2. 
+
+파일 생성
+- RESTTest > "script.sql"
+
+
+설정 테스트
+
+- JDBC 연결 테스트
+- HikariCP 구축 테스트
+- MyBatis 구축 테스트
+
+- src/test/java > "com.test.java.db"
+						> "JDBCTest.java"
+						> "HikariCPTest.java"
+
+
+구현
+
+- "com.test.controller" > "AddressController.java" > REST 테스트 컨트롤러
+						> "RESTController.java" > 업무 컨트롤러
+- "com.test.domain" > "AddressDTO.java"
+- "com.test.persistence" > "AddressDAO.java" (I)
+						 > "AddressDAOImpl.java (C)
+
+- views(X) > ******** REST API Server는 뷰를 만들지 않는다!!		 
+
+
+
+REST API 테스트
+$ curl -X GET URL
+> 자원 반환
+
+REST Client Tool
+1. cURL
+2. Postman
+3. Insomnia
+4. VS Code
+
+
+
+
+
+
+
+
+
+
+
