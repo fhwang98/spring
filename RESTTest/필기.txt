@@ -92,6 +92,16 @@ REST Client Tool
 4. VS Code
 
 
+Mapped Statements collection does not contain value for rest.edit
+매핑된 쿼리 목록 안에서 해당 아이디를 못찾았다 > xml 수정 후 서버 재시작
+
+
+
+
+REST API Server 구축 완료!
+- 개발자에게 제공되는 기능들을 모아놓은 서버
+- 클라이언트측 기능이 전무;; > 화면(구축)이 없음
+- 각종 OPEN API 서버와 동일(공공 데이터 포탈)
 
 
 

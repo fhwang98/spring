@@ -11,4 +11,25 @@
 			VALUES (seqAddress.nextVal, #{name}, #{age}, #{gender}, #{address}, default)
 	</insert>
 
+	<select id="list" resultType="com.test.domain.AddressDTO">
+		SELECT * FROM tblAddress ORDER BY name
+	</select>
+	
+	<update id="edit" parameterType="com.test.domain.AddressDTO">
+		UPDATE tblAddress SET
+			name = #{name},
+			age = #{age},
+			gender = #{gender},
+			address = #{address}  
+		WHERE seq = #{seq}
+	</update>
+	
+	<delete id="del" parameterType="String">
+		DELETE FROM tblAddress WHERE seq = #{seq}
+	</delete>
+	
+	<select id="get" parameterType="String" resultType="com.test.domain.AddressDTO">
+		SELECT * FROM tblAddress WHERE seq = #{seq}
+	</select>
+
 </mapper>

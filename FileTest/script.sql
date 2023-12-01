@@ -4,6 +4,12 @@
 SELECT * FROM tblplace;
 SELECT * FROM tblpic;
 
+DROP TABLE tblpic;
+DROP SEQUENCE seqpic;
+
+DROP TABLE tblplace;
+DROP SEQUENCE seqplace;
+
 -- 장소
 CREATE TABLE tblPlace (
 	seq NUMBER PRIMARY KEY,
@@ -11,6 +17,7 @@ CREATE TABLE tblPlace (
 	content varchar2(1000) NOT NULL,
 	regdate DATE DEFAULT sysdate NOT NULL
 );
+
 CREATE SEQUENCE seqplace;
 
 
@@ -23,5 +30,5 @@ CREATE TABLE tblPic (
 CREATE SEQUENCE seqPic;
 
 
-SELECT seq, subject, content, regdate, () AS picCount FROM tblPlace ORDER BY seq DESC;
+SELECT a.*, (SELECT count(*) FROM tblpic WHERE pseq = a.seq) AS picCount FROM tblPlace a ORDER BY a.seq DESC;
 
