@@ -1,0 +1,19 @@
+목적!!
+- REST Server의 기능을 이용한 주소록 관리 프로그램
+- 모바일(느낌) > CSS Framework(Mobile 지원)
+
+
+프로젝트 설정
+- pom.xml > Java, Spring version
+
+파일 추가
+- "com.test.controller" > "ClientController.java"
+- views > "list.jsp"
+		> "add.jsp"
+		> "view.jsp"
+		> "edit.jsp"
+		> "del.jsp"
+- views > "inc" > "header.jsp"
+
+프로젝트 
+- 개인당 > 모바일 1~2장 작업 + REST API Server                                                                                                               
