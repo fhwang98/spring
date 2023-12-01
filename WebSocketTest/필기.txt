@@ -1,0 +1,41 @@
+Socket
+- 네트워크 상에서 통신을 하기 위한 도구(무전기, 전화기)
+- 규격
+- 자바 Socket
+
+WebSocket
+- 웹상에서 구현된 소켓
+- ajax 유사
+
+Ajax(웹) > 단방향 통신 > 편지
+WebSocket > 양방향 통신 > 전화기
+
+브라우저 <-> (통신) <-> 웹서버
+
+
+프로젝트 설정
+1. pom.xml > Java, Spring version
+2. 의존성 추가 > WebSocket
+
+
+파일 추가
+- "com.test.controller" > "SocketController.java"
+- "com.test.server" > "SocketServer.java"
+- views > "test.jsp"
+
+
+
+채팅 구현
+- com.test.controller > "ChatController.java"
+- com.test.server > "ChatServer.java"
+- "com.test.domain" > "Message.java"
+- views > "chat.jsp"
+
+
+
+
+
+
+
+
+
