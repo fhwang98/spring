@@ -1,0 +1,36 @@
+Spring Mybatis
+1 XML Mapper를 사용하는 방식
+2. Interface Mapper를 사용하는 방식
+
+프로젝트 설정
+1. GitHub > 일괄 적용
+2. root-context.xml 수정
+3. Mapper 인터페이스 만들기
+	- src/main/java > "com.test.mapper" < "TestMapper.java" (I)
+	- SqlSessionTemplate(이전 사용) > TestMapper(대신 사용)
+	- SQL 실행하는 담당자 (인터페이스 매퍼)
+4. src/main/resources > "com" > "test" > "mapper" > "TestMapper.xml"
+
+
+테스트
+- src/test/java
+"com.test.persistence" > "MapperTest.java"
+- XML이 위치한 폴더는 반드시(***) 인터페이스 매퍼가 들어있는 패키지 구조가 동일해야 한다.
+- 인터페이스 매퍼가 XML의 위치를 인식하게 된다.
+
+
+5. 파일 추가
+- "com.test.controller" > "AddressController.java"
+- "com.test.domain" > "AddressDTO.java"
+- com.test.mapper > "AddressMapper.java" (I) > DAO 역할을 대신함
+- src/main/resources > com > test > mapper > "AddressMapper.xml"
+
+
+ 
+
+
+
+
+
+
+
