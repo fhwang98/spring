@@ -25,8 +25,9 @@
 	
 	<div>
 		<button type="buton" class="in">들어가기</button>
-		<button type="buton" class="in" data-name="강아지">들어가기(강아지)</button>
-		<button type="buton" class="in" data-name="고양이">들어가기(고양이)</button>
+	</div>
+		<hr>
+	<div>
 		<button type="buton" class="in" data-name="거북이">들어가기(거북이)</button>
 		<button type="buton" class="in" data-name="호랑이">들어가기(호랑이)</button>
 		<button type="buton" class="in" data-name="햄스터">들어가기(햄스터)</button>

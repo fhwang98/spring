@@ -66,6 +66,30 @@ public class ChatServer {
 					e.printStackTrace();
 				}
 			}
+		} else if (message.getCode().equals("3")) {
+			//대화 메시지
+			//- 보낸 사람 빼고 나머지 사람에게 전달
+			for (Session s : sessionList) {
+				if (s != session) { // 보낸 사람 빼고
+					try {
+						s.getBasicRemote().sendText(msg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} else if (message.getCode().equals("4")) {
+			//대화 메시지
+			//- 보낸 사람 빼고 나머지 사람에게 전달
+			for (Session s : sessionList) {
+				if (s != session) { // 보낸 사람 빼고
+					try {
+						s.getBasicRemote().sendText(msg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 		
 	}
