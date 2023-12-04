@@ -1,0 +1,183 @@
+이전 인증 방식 > 세션(쿠키) 기반 + 직접 처리
+스프링 프레임워크 > 인증 > Spring Security Project
+
+*****어려움******
+
+스프링 시큐리티
+
+프로젝트 설정
+1. 일괄 설정
+	- pom.xml
+	- web.xml
+	- root-context.xml
+	- log4j
+
+2. WEB-INF > lib > ojdbc6
+	- Build Path
+
+3. pom.xml
+	- 시큐리티 의존성 4개 추가
+
+4. 패키지
+	- "com.test.controller"
+	- "com.test.persistence"
+	- "com.test.domain"
+	- "com.test.mapper"
+	- "com.test.security"
+
+6. security-context.xml
+	- 파일 생성
+	- WEB-INF/spring/security-context.xml
+	- 스프링 시큐리티의 전반적인 설정
+	- 파일 생성 >  spring bean configuration file
+	- security 네임스페이스 추가
+	- "-5.0" 안지우면 에러남
+
+7. web.xml
+	- 스프링 시큐리티가 동작할 수 있게 필터 추가
+
+8. 실행
+	- 에러 > No bean named 'springSecurityFilterChain' available
+	- security-context.xml을 찾지 못해서
+	
+8.1 web.xml > security-context.xml 위치 추가
+8.2 security-context.xml > 기본 구문 작성
+8.3 정상실행
+
+9. 기본적인 URI 설계
+	- /index.do > 초기 페이지(모두 접근)
+	- /member/member.do > 회원 페이지(회원만 접근, 관리자도 접근)
+	- /admin/admin.do >	관리자 페이지(관리자만 접근)
+
+9.1 파일 생성
+	- com.test.controller > "TestController.java"
+	- views > "index.jsp"
+	-		> "member" > "member.jsp"
+	-		> "admin" > "admin.jsp"
+	-		> "inc" > "header.jsp"
+
+9.2 정상실행
+
+10. 로그인
+	- security-context.xml 수정
+
+
+10.1 pattern 속성
+	- 접근할 URI
+
+
+10.2 access 속성
+	- 표현식
+	- 접근 권한
+
+
+10.3 실행
+	- index.do
+		> 접근 성공
+	- member.do
+		> 접근 실패
+		> http://localhost:8090/spring/login
+		> 빌트인 로그인 페이지로 이동(권한 없어서..)
+
+
+11. 단순 로그인
+	- 직접 구현(X)
+	- 내장 구현(O)
+
+
+11.1 주의점(***)
+	- 일반 시스템(id) == 스프링 시큐리티(usename)
+
+
+11.2 security-context.xml 수정
+	- hong 계정 추가
+
+
+11.3 로그아웃
+	- 개발자 도구 > Application > Cookies > JSESSIONID > delete
+
+
+12. 여러 권한을 가지는 사용자
+	- 관리자 > 일반 화원 권한 + 관리자 권한
+
+
+12.1 security-context.xml 수정
+
+
+12.2 실행
+	- hong 로그인 
+		- member.do > 성공
+		- admin.do > 실패 > 403 에러 
+
+
+12.3 security-context.xml 수정
+	- admin 계정 추가
+	- 자격증명 > ROLE_MEMBER, ROLE_ADMIN 둘다 추가
+
+
+13. 403 페이지 구현
+	- "com.test.controller" > "AuthController.java"
+	- views > "auth" > "accesserror.jsp"
+
+
+14. 로그인 페이지 구현
+	- 커스텀 로그인 페이지
+	- 접근 제한(403) 페이지처럼 직접 특정 URI를 지정할 수 있다.
+	
+14.1 security-context.xml
+	- 로그인 페이지
+
+14.2
+	- AuthController.java
+	- views > auth > "mylogin.do"
+
+	- 그냥 로그인 > 405에러 > 해결 > csrf방지
+
+14.3 CSRF, Cross-site request forgery
+	- 해킹 기법
+	- 요청 정보를 다른 사이트에서 보내서 위조하는 기법..
+	- 스프링 시큐리티 > CSRF 방지
+	- 모든 POST 요청을 할 때 > 위조가 되지 않았다는 사실을 증명!!
+	- hidden 태그로 인증토큰 보냄
+	- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+
+15. 로그인 성공 이후 처리
+	- 정해진 URI로 이동하기
+	- 일반 회원 > member.do 이동
+	- 관리자 > admin.do 이동
+	
+15.1 파일 추가
+	- com.test.sequrity > "CustomLoginSuccessHandler.java"
+
+15.2 security-context.xml
+	- 빈 추가
+	- authentication-success-handler-ref=""
+
+16. 로그아웃 처리
+	- 로그인처럼 특정한 URI를 지정하고, 로그아웃처리 후 직접 로직을 처리하는 핸들러를 등록한다.
+	
+16.1 security-context.xml
+	- security:logout
+
+16.2 AuthController.java
+
+16.3 views > auth > mylogout.jsp 
+
+계정 정보(오라클) + 시큐리티 연동
+내일 AWS 수업~ (본인 인증용 신용카드 지참(VISA, Master)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
