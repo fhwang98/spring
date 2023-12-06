@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.TestMapper">
+
+	<insert id="add" parameterType="com.test.domain.MemberDTO">
+		INSERT INTO tblMember (userid, userpw, username)
+			VALUES (#{userid}, #{userpw}, #{username})
+	</insert>
+	
+	<insert id="addAuth" parameterType="com.test.domain.AuthDTO">
+		INSERT INTO tblAuth (userid, auth)
+			VALUES (#{userid}, #{auth})
+	</insert>
+
+</mapper>

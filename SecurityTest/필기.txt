@@ -163,21 +163,47 @@
 
 16.3 views > auth > mylogout.jsp 
 
+
+
 계정 정보(오라클) + 시큐리티 연동
 내일 AWS 수업~ (본인 인증용 신용카드 지참(VISA, Master)
 
 
 
 
+17. 오라클 연동 + 계정
+- SecurityTest > "script.sql"
+
+18. 회원가입 구현 전 > 임시계정 만들기
+	- 암호를 인코딩한 상태로 저장하기 위해서..
+	- 테스트용
+	- src/text/java > com.test.spring > "MemberTest.java"
 
 
+18.1 암호 인코딩 객체
+	- security-context.xml
+	- BCryptPasswordEncoder
+		- 블로피시(blowfish) 해시 함수 기반 인코딩
+		- 암호화는 가능, 복호화는 불가능
+	- src/main/java > com.test.mapper > "TestMapper.java" (I)
+	- src/main/resources > "com" > "test" > "mapper" > "TestMapper.xml"
+	- com.test.domain > "MemberDTO.java"
+					  > "AuthDTO.java"
+
+19. 회원 가입 페이지
+	- com.test.controller > "MemberController.java"
+	- com.test.mapper > "MemberMapper.java" (I)
+	- com > test > mapper > "MemberMapper.xml"
+	- views > auth > "register.jsp"
 
 
+20. 커스텀 UserDetailsService 사용
+	- DB 사용 로그인 후 처리
+	- com.test.security > "CustomUserDetailsService.java"
+	- com.test.domain > "CustomUser.java" 
 
-
-
-
-
+21. JSP 처리
+	
 
 
 
