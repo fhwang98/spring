@@ -1,0 +1,43 @@
+Oracle
+- SQL Developer
+- Java Application(JDBC)
+
+
+Elasticsearch Client
+- Dev Tools
+- Spring Application
+
+프로젝트 설정
+1. pom.xml > Java, Spring version
+	- 엘라스틱서치 의존성 추가
+	- jackson-databind 의존성 추가
+2. web.xml
+	- 인코딩 필터 추가
+3. 패키지
+	- "com.test.controller"
+	- 패키지 스캔(servlet-context.xml)
+4. 파일
+	- com.test.controller > "TestController.java"
+	- views > "list.jsp"
+			> "add.jsp"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
