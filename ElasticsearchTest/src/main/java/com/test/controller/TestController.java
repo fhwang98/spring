@@ -1,20 +1,30 @@
 package com.test.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.http.HttpHost;
+import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.xcontent.XContentType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.mustachejava.MustacheNotFoundException;
 
 @Controller
 public class TestController {
@@ -23,7 +33,14 @@ public class TestController {
 
 	//목록보기
 	@GetMapping(value = "/list.do")
-	public String list(Model model) {
+	@SuppressWarnings("deprecation")
+	public String list(Model model, String type, String word, String word2
+								, @RequestParam(defaultValue = "0") int slop) {
+		
+		if (type == null || type.equals("")) {
+			//전체 검색
+			type = "match_all";
+		}
 		
 		try {
 			
@@ -48,7 +65,30 @@ public class TestController {
 			//			"match_all" : {}
 			//		}
 			//	}
-			searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+			if (type.equals("math_all")) {
+				//math_all
+				searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+	 		} else if (type.equals("match_or")) {
+	 			//match > 풀 텍스트 검색
+	 			searchSourceBuilder.query(QueryBuilders.matchQuery("message", word));
+	 		} else if (type.equals("match_and")) {
+	 			//match + operator(and)
+	 			searchSourceBuilder.query(QueryBuilders.matchQuery("message", word).operator(Operator.AND));
+	 		} else if (type.equals("match_phrase")) {
+	 			//match phrase
+	 			searchSourceBuilder.query(QueryBuilders.matchPhraseQuery("message", word).slop(slop));
+	 		} else if (type.equals("match_bool")) {
+	 			//bool must must_not
+	 			//searchSourceBuilder.query(QueryBuilders.boolQuery().must(반드시 포함할 조건).mustNot(반드시 제거할 조건));
+	 			searchSourceBuilder.query(QueryBuilders.boolQuery()
+	 									.must(QueryBuilders.matchQuery("message", word))
+	 									.mustNot(QueryBuilders.matchQuery("message", word2)));
+	 		} else if (type.equals("match_should")) {
+	 			//bool should
+	 			searchSourceBuilder.query(QueryBuilders.boolQuery()
+	 										.must(QueryBuilders.matchQuery("message", word))
+	 										.should(QueryBuilders.matchQuery("message", word)));
+	 		}
 			
 			searchRequest.source(searchSourceBuilder);
 			
@@ -60,6 +100,24 @@ public class TestController {
 			for (SearchHit hit : searchHits) {
 				System.out.println(hit);
 			}
+			
+			//SearchHits > (변환) > List<HashMap>
+			
+			List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+			
+			for (SearchHit hit : searchHits) {
+				//Document > HashMap
+				Map<String,Object> map = hit.getSourceAsMap();
+				map.put("id", hit.getId());
+				map.put("score", hit.getScore());
+				list.add(map);
+			}
+			
+			model.addAttribute("list", list);
+			model.addAttribute("word", word);
+			model.addAttribute("word2", word2);
+			model.addAttribute("type", type);
+			model.addAttribute("slop", slop);
 			
 			//사용 종료 > 엘라스틱서치 접속 종료
 			client.close();
@@ -79,7 +137,38 @@ public class TestController {
 	
 	//추가하기(처리)
 	@PostMapping(value = "/addok.do")
-	public String addok(Model model) {
-		return "redirect:/elasticsearch/list.do";
+	public String addok(Model model, String id, String message) {
+		
+		try {
+			
+			//clien 객체 > 엘라스틱 서버와 연결
+			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
+			/*
+				PUT spring/_doc/11
+				{
+					"message": "안녕하세요.홍길동입니다."
+				}
+			*/
+			
+			//IndexRequest indexRequest = new IndexRequest("spring").source(전송할 데이터 ,XContentType.JSON);
+			
+			String data = String.format("{\"message\": \"%s\"}", message);
+			
+			IndexRequest indexRequest = new IndexRequest("spring")
+											.source(data, XContentType.JSON)
+											.setRefreshPolicy("wait_for");
+			indexRequest.id(id);
+			
+			//실제로 엘라스틱 서치에 데이터(도큐먼트)를 추가하기
+			client.index(indexRequest, RequestOptions.DEFAULT);
+			
+			client.close();
+					
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/list.do";
 	}
 }
